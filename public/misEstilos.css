@@ -2,7 +2,7 @@
 
     max-width:100%;
     min-height: 4vw;
-    max-height: 28vh;
+    max-height: 28vh; /* cambiar estos */
    
     text-align: center;
     overflow-y: auto; /* Habilita el desplazamiento vertical cuando sea necesario */
