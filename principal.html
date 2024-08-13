@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="public/imagenes/favicon.png">
+    <title>BingoByte</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="scss/custom.css">
+    <link rel="stylesheet" href="public/misEstilos.css">
+</head>
+<body class="fondo-imagen">
+<nav class="navbar navbar-expand-lg mi-gradiante">
+    <div class="container-fluid">
+        <div class="row mx-0">
+            <div class="col">
+                <img src="public/imagenes/LogoRedondo.png" alt="Logo" width="80em" height="80em" class="d-inline-block align-text-center">
+            </div>
+            <div class="col">
+                <h1 class="h1 text-white my-2 ">BingoByte</h1>
+            </div>
+            <div class="col"></div>
+        </div>
+        <button class="navbar-toggler border-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+       <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>-->
+    </div>
+</nav>
+
+<main class="container-xl">
+    <div class="row">
+        <div class="col text-center bg-body-secondary rounded my-2" style="border: 1px solid #ccc; opacity: 0.98">
+            <h1 id="resultado" class="text-black fw-bold font-monospace" style="font-size: 20vh">
+                Comenzar
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <button class="btn text-white mi-gradiante mt-2 fw-bolder" style="font-size: xx-large" onclick="generarNumero()">Generar Números</button>
+    </div>
+
+    <div class="row">
+        <div class="badge rounded-pill mi-gradianteInverso mt-2 " style="font-size: x-large;">
+            Números Generados <span class="badge text-bg-danger align-items-sm-end" style="font-size: medium; max-width: 3em;" id="cantidad"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="mt-2" style="font-size: xxx-large;">
+            <div class="contenedor-scrolleable bg-body-secondary rounded-2 fw-bold" id="resultadosAnteriores">
+                <!-- Aquí se mostrarán los resultados anteriores -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<!--Aquí colocamos el javascript:-->
+<script>
+    // Función para obtener los parámetros de la URL
+    function obtenerParametroURL(nombre) {
+        nombre = nombre.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + nombre + "=([^&#]*)"),
+            resultados = regex.exec(location.search);
+        return resultados === null ? "" : decodeURIComponent(resultados[1].replace(/\+/g, " "));
+    }
+
+    var limiteInferior = parseInt(obtenerParametroURL('limiteInferior'), 10) || 1; // Default value is 1
+    var limiteSuperior = parseInt(obtenerParametroURL('limiteSuperior'), 10) || 90; // Default value is 90
+
+    let numeros = new Set(); // Conjunto para almacenar números únicos
+
+    function generarNumero() {
+        const x = limiteInferior; // Define el límite inferior del rango dentro de la función
+        const y = limiteSuperior; // Define el límite superior del rango dentro de la función
+
+        if (numeros.size >= (y - x + 1)) {
+            alert('Ya se han generado todos los números posibles dentro de este rango.');
+            return;
+        }
+
+        let nuevoNumero;
+        do {
+            nuevoNumero = Math.floor(Math.random() * (y - x + 1)) + x;
+        } while (numeros.has(nuevoNumero));
+
+        numeros.add(nuevoNumero); // Agregar el nuevo número al conjunto
+
+        // Mostrar el número en pantalla
+        const numeroActual = document.getElementById('resultado');
+        numeroActual.innerHTML = nuevoNumero;
+
+        // Mostrar cuántos hemos generado
+        const generados = document.getElementById('cantidad');
+        generados.innerHTML = numeros.size;
+
+        // Ordenar y mostrar todos los números generados
+        const contenedor = document.getElementById('resultadosAnteriores');
+        let vectorNumeros = Array.from(numeros);
+        vectorNumeros.sort((a, b) => a - b);
+
+        let texto = "";
+        vectorNumeros.forEach((numero, index) => {
+            texto += numero + ((index + 1) % 12 === 0 ? '<br>' : ', ');
+        });
+
+        contenedor.innerHTML = texto;
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.contenedor-scrolleable {
+
+    max-width:100%;
+    height: 17vw; /* Altura fija */
+    text-align: center;
+    overflow-y: auto; /* Habilita el desplazamiento vertical cuando sea necesario */
+    border: 1px solid #ccc; /* Opcional: solo para visualizar el contenedor */
+    opacity: 0.98
+}
+.fondo-imagen {
+    background-image: url("/public/imagenes/fondoPrueba.png");
+    height: 100vh; /* Ajusta la altura a la ventana de visualización */
+}
+/* Estilo personalizado para las columnas */
+.col-carton {
+    flex: 0 0 11.11%;
+    max-width: 11.11%;
+}
+.casillas {
+    min-width: 2cm; /* Un ancho mínimo de 3 caracteres */
+}

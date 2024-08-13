@@ -1,0 +1,42 @@
+// Custom.scss
+
+///# Watch your custom Sass for changes and compile it to CSS
+///sass --watch ./scss/custom.scss ./css/custom.css
+
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Gradiente Lineal Azul
+$inicio-color: #001046;  // Azul claro
+$fin-color: #00A1C3;    // Azul oscuro
+
+
+.mi-gradiante {
+  background: linear-gradient(to top, $inicio-color, $fin-color);
+}
+.mi-gradianteInverso {
+  background: linear-gradient(to top,$fin-color,$inicio-color);
+}
+// Estilo personalizado para el botón
+.btn-outline-blanco {
+  color: #333; // Color del texto en estado no activo
+  background-color: white; // Fondo blanco en estado no activo
+  border: 1px solid #000000; // Borde negro
+  font-size: xx-large;
+
+  &:hover {
+    background-color: #b6dfff; // Un ligero gris para hover
+    border: 1px solid #000000; // Borde negro
+  }
+
+  &.active { // Cuando el botón está activo
+    color: white; // Texto blanco en estado activo
+    background-color: #00274b; // Fondo azul en estado activo
+    border: 1px solid #000000; // Borde negro
+  }
+}
+
+
