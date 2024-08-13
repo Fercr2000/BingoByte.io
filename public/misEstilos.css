@@ -19,5 +19,5 @@
     max-width: 11.11%;
 }
 .casillas {
-    min-width: 2cm; /* Un ancho mínimo de 3 caracteres */
+    min-width: 6ex; /* Un ancho mínimo de 3 caracteres */
 }
