@@ -114,10 +114,12 @@
         let vectorNumeros = Array.from(numeros);
         vectorNumeros.sort((a, b) => a - b);
 
-        let texto = "";
-        vectorNumeros.forEach((numero, index) => {
-            texto += numero + ((index + 1) % 12 === 0 ? '<br>' : ', ');
-        });
+        let texto = vectorNumeros.join(', ');
+
+        // let texto = "";
+        // vectorNumeros.forEach((numero, index) => {
+        //     texto += numero + ((index + 1) % 12 === 0 ? '<br>' : ', ');
+        // });
 
         contenedor.innerHTML = texto;
     }
